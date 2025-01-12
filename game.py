@@ -54,10 +54,10 @@ while True:
     if user_input == "exit":
         break
     
-    for i in range(1, 2 + 1):
+    while len(computer_selection_list) < 2:
         computer_selection = get_random_selection()
-        computer_selection_list.append(computer_selection)
-
+        if computer_selection not in computer_selection_list:
+            computer_selection_list.append(computer_selection)
     
     print(f"당신의 선택: {player_selection_list}")
     print(f"컴퓨터의 선택: {computer_selection_list}")
