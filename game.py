@@ -1,5 +1,15 @@
 import random
 
+def get_selection_from_input(user_input):
+    num = int(user_input)
+    if num == 1:
+        selection = "가위"
+    elif num == 2:
+        selection = "바위"
+    elif num == 3:
+        selection = "보"
+    return selection
+
 def get_random_selection():
     num = random.randint(0, 2)
     if num == 0:
@@ -24,11 +34,20 @@ def determine_winner(player_selection, computer_selection):
 print("가위 바위 보 게임에 오신 것을 환영합니다!")
     
 while True:
-    player_selection = input("가위, 바위, 보 중에서 선택하세요 (종료하려면 'exit' 입력): ")
-    if player_selection == "exit":
+    print('--------------------')
+    print("선택하세요.")
+    print("1. 가위")
+    print("2. 바위")
+    print("3. 보")
+
+    user_input = input("종료하려면 'exit' 입력)")
+
+    if user_input == "exit":
         print("게임을 종료합니다.")
         break
-    
+
+    player_selection = get_selection_from_input(user_input)
+
     
     computer_selection = get_random_selection()
 
