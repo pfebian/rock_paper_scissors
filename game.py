@@ -65,8 +65,25 @@ while True:
     user_input = input()
     player_selection = player_selection_list[int(user_input) - 1]
 
-    computer_selection = random.randint(0, 1)
-    computer_selection = computer_selection_list[computer_selection]
+    cnt_same = 0
+    for i in range(2):
+        for j in range(2):
+            if player_selection_list[i] == computer_selection_list[j]:
+                cnt_same += 1
+                break
+    # print(f'cnt_same: {cnt_same}')  # test
+    if cnt_same == 2:
+        if "가위" in computer_selection_list and "바위" in computer_selection_list:
+            computer_selection = "바위"
+        elif "바위" in computer_selection_list and "보" in computer_selection_list:
+            computer_selection = "보"
+        elif "보" in computer_selection_list and "가위" in computer_selection_list:
+            computer_selection = "가위"
+        else:
+            print("에러")
+    else:
+        computer_selection = random.randint(0, 1)
+        computer_selection = computer_selection_list[computer_selection]
 
     print("당신의 선택:", player_selection)
     print("컴퓨터의 선택:", computer_selection)
