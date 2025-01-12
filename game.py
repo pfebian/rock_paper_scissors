@@ -31,28 +31,45 @@ def determine_winner(player_selection, computer_selection):
         return "computer"
 
 
-print("가위 바위 보 게임에 오신 것을 환영합니다!")
+print("가위 바위 보 <<하나 빼기>> 게임에 오신 것을 환영합니다!")
     
 while True:
     print('--------------------')
-    print("선택하세요.")
-    print("1. 가위")
-    print("2. 바위")
-    print("3. 보")
+    player_selection_list = []
+    computer_selection_list = []
+    for i in range(1, 2 + 1):
+        print(i, "번째 수를 선택하세요.")
+        print("1. 가위")
+        print("2. 바위")
+        print("3. 보")
 
-    user_input = input("종료하려면 'exit' 입력)")
+        user_input = input("종료하려면 'exit' 입력)")
+        
+        if user_input == "exit":
+            print("게임을 종료합니다.")
+            break
+        player_selection = get_selection_from_input(user_input)
+        player_selection_list.append(player_selection)
 
     if user_input == "exit":
-        print("게임을 종료합니다.")
         break
-
-    player_selection = get_selection_from_input(user_input)
+    
+    for i in range(1, 2 + 1):
+        computer_selection = get_random_selection()
+        computer_selection_list.append(computer_selection)
 
     
-    computer_selection = get_random_selection()
+    print(f"당신의 선택: {player_selection_list}")
+    print(f"컴퓨터의 선택: {computer_selection_list}")
+    print("최종 수를 선택하세요.")
+    user_input = input()
+    player_selection = player_selection_list[int(user_input) - 1]
 
-    print(f"당신의 선택: {player_selection}")
-    print(f"컴퓨터의 선택: {computer_selection}")
+    computer_selection = random.randint(0, 1)
+    computer_selection = computer_selection_list[computer_selection]
+
+    print("당신의 선택:", player_selection)
+    print("컴퓨터의 선택:", computer_selection)
 
     result = determine_winner(player_selection, computer_selection)
     if result == -1:
